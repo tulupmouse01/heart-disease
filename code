@@ -9,7 +9,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import csv
 
-with open(r"C:\Users\jenki\Downloads\heart_failure_clinical_records_dataset.csv") as file:
+with open(r"heart_failure_clinical_records_dataset.csv") as file:
     data = csv.reader(file)
     first_line = next(data)
     #print("first:", first_line)
@@ -39,9 +39,9 @@ with open(r"C:\Users\jenki\Downloads\heart_failure_clinical_records_dataset.csv"
             key_name = labels[comorb]
             num_comorbs[key_name] += 1
             if comorb >=1:
-                morb += 1  #at least one comorb 
+                morb += 1  #at least one comorbidity 
             
-    deci=death_count/patients  # decimal amount of paitents that died
+    deci=death_count/patients  # decimal amount of patients that died
     percent = round(deci*100,2)
     print("Percent of patients who died was ",percent, "%", sep="")   # % of paients that died
     print("Percent with comorbidity was ", round(morb/death_count *100,2),"%", sep="")
@@ -63,12 +63,12 @@ pie_data.plot.pie(
 )
 
 
-# with or without any combidities
+# with or without any comorbidities
 no_comorb_deaths = death_count - morb
 plt.figure(2) #allows me to open the files all together
 pie_data_2 = pd.Series(
     [morb, no_comorb_deaths],
-    index=["Atleast one comorbidity", "No comorbidities"]
+    index=["At least one comorbidity", "No comorbidities"]
 )
 #pie chart for death rate
 pie_data_2.plot.pie(
@@ -77,7 +77,7 @@ pie_data_2.plot.pie(
     title='Patient Death with Comorbidities vs Without Comorbidities'
 )
 
-# broken up for one two three or four
+# broken up for one, two, three, or four
 plt.figure(3)
 bar_graph = pd.Series(num_comorbs)
 
